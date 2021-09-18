@@ -1,0 +1,2 @@
+module Hoge::PostsHelper
+end
