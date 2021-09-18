@@ -13,4 +13,5 @@ num = 1
     title: "タイトル#{num}",
     text: SecureRandom.urlsafe_base64(200)
   )
+  num += 1
 end
