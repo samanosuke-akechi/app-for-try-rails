@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+num = 1
+
+100.times do |data|
+  Post.create!(
+    title: "タイトル#{num}",
+    text: SecureRandom.urlsafe_base64(200)
+  )
+end
