@@ -1,3 +1,16 @@
 // Place all the styles related to the api::postal_code_search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.search-form {
+  width: 400px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 2px solid #ddd;
+}
