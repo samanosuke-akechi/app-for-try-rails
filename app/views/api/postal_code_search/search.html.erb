@@ -1,0 +1,18 @@
+<div class="container">
+  <%= form_with url: api_postal_code_search_search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :postal_code, class: "search-form", placeholder: "郵便番号を入力してください" %>
+  <% end %>
+
+  <p>
+    郵便番号： <%= @zipcode %>
+  </p>
+  <p>
+    都道府県： <%= @address1 %>
+  </p>
+  <p>
+    市区町村： <%= @address2 %>
+  </p>
+  <p>
+    町域： <%= @address3 %>
+  </p>
+</div>
