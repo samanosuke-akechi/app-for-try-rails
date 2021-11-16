@@ -12,13 +12,7 @@ class ComicsController < ApplicationController
     @comic = Comic.new(comic_params)
     @genres = ComicGenreForm.new
     if @comic.save
-      index = 0
-      @genres.collection.each do |genre|
-        genre.comic_id = @comic.id
-        genre.name = genre_params[index][:name]
-        genre.save
-        index += 1
-      end
+      @genres.save(genre_params, @comic.id)
       redirect_to action: :index
     else
       render :new

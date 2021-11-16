@@ -23,7 +23,13 @@ class ComicGenreForm
     false
   end
   
-  def save
-    Genre.create(name: name, comic_id: comic_id)
+  def save(genre_params, comic_id)
+    index = 0
+    collection.each do |genre|
+      genre.comic_id = comic_id
+      genre.name = genre_params[index][:name]
+      genre.save
+      index += 1
+    end
   end
 end
