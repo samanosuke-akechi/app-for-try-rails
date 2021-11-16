@@ -19,6 +19,24 @@ class ComicsController < ApplicationController
     end
   end
 
+  def edit
+    @comic = Comic.find(params[:id])
+    @genres = @comic.genres
+  end
+
+  def update
+    @comic = Comic.find(params[:id])
+    if @comic.update(comic_params)
+      genre_params.keys.each do |id|
+        genre = Genre.find(id)
+        genre.update(name: genre_params[id][:name])
+      end
+      redirect_to action: :index
+    else
+      render :edit
+    end
+  end
+
   private
 
   def comic_params
