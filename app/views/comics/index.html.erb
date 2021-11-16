@@ -8,7 +8,9 @@
     <p>タイトル：<%= comic.title %></p>
     <p>作者：<%= comic.author %></p>
     <% comic.genres.each do |genre| %>
-      <p>ジャンル：<%= genre.name %></p>
+      <% if genre.name %>
+        <p>ジャンル：<%= genre.name %></p>
+      <% end %>
     <% end %>
   </div>
   <div><%= link_to '編集する', edit_comic_path(comic) %></div>
