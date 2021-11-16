@@ -21,7 +21,14 @@ class ComicsController < ApplicationController
 
   def edit
     @comic = Comic.find(params[:id])
-    @genres = @comic.genres
+    if @comic.genres.count < 3
+      (3 - @comic.genres.count).times do
+        Genre.create(comic_id: @comic.id)
+      end
+      @genres = @comic.genres
+    else
+      @genres = @comic.genres
+    end
   end
 
   def update
