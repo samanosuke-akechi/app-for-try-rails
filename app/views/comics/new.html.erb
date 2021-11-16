@@ -11,9 +11,11 @@
     <%= f.text_field :author %>
   </div>
   <div>
-    <%= fields_for :genre do |ff| %>
-      <%= ff.label :name %>
-      <%= ff.text_field :name %>
+    <% @genres.collection.each do |genre| %>
+      <%= fields_for 'genres[]', genre do |ff| %>
+        <%= ff.label :name %>
+        <%= ff.text_field :name %>
+      <% end %>
     <% end %>
   </div>
   <div>

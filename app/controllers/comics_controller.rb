@@ -5,14 +5,20 @@ class ComicsController < ApplicationController
 
   def new
     @comic = Comic.new
-    @comic.genres.build
+    @genres = ComicGenreForm.new
   end
 
   def create
     @comic = Comic.new(comic_params)
-    genre = @comic.genres.build(genre_params)
+    @genres = ComicGenreForm.new
     if @comic.save
-      genre.save
+      index = 0
+      @genres.collection.each do |genre|
+        genre.comic_id = @comic.id
+        genre.name = genre_params[index][:name]
+        genre.save
+        index += 1
+      end
       redirect_to action: :index
     else
       render :new
@@ -22,10 +28,10 @@ class ComicsController < ApplicationController
   private
 
   def comic_params
-    params.require(:comic).permit(:title, :author, genres_attributes: [:name])
+    params.require(:comic).permit(:title, :author)
   end
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genres)
   end
 end
