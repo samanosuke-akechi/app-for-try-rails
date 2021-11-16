@@ -2,3 +2,13 @@
 <p>Find me in app/views/comics/index.html.erb</p>
 
 <%= link_to '漫画登録', new_comic_path %>
+
+<% @comics.each do |comic| %>
+  <div>
+    <p>タイトル：<%= comic.title %></p>
+    <p>作者：<%= comic.author %></p>
+    <% comic.genres.each do |genre| %>
+      <p>ジャンル：<%= genre.name %></p>
+    <% end %>
+  </div>
+<% end %>
