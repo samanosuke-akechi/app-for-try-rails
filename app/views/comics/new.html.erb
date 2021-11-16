@@ -1,2 +1,22 @@
 <h1>Comics#new</h1>
 <p>Find me in app/views/comics/new.html.erb</p>
+
+<%= form_with model: @comic, local: true do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  </div>
+  <div>
+    <%= fields_for :genre do |ff| %>
+      <%= ff.label :name %>
+      <%= ff.text_field :name %>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit '登録' %>
+  </div>
+<% end %>
