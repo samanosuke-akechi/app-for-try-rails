@@ -22,7 +22,7 @@ class ComicGenreForm
   def persisted?
     false
   end
-  
+
   def save(genre_params, comic_id)
     index = 0
     collection.each do |genre|
