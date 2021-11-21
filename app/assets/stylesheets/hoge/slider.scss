@@ -1,0 +1,27 @@
+.your-class {
+  width: 30vw;
+  margin: 0 auto;
+  // スライド
+  .slide {
+    height: 100px;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content-wrap {
+      border: 1px solid black;
+    }
+  }
+  // 左右のボタン
+  .slick-prev {
+    height: 100px;
+    width: 100px;
+    left: -100px;
+  }
+  .slick-next {
+    height: 100px;
+    width: 100px;
+    right: -100px;
+  }
+}
+

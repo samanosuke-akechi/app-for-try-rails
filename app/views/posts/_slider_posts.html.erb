@@ -1,21 +1,38 @@
+<%# 最低限必要なのはスライダー全体としての親クラス(下記の例だとclass="your-class") %>
+<%# それとスライド1枚1枚としての子要素(下記の例だとclass="slide") %>
+<%# タグやクラス名やIDに縛りは特にない(ulとli要素などでもOK) %>
+
 <div class="your-class">
-  <div>
-    <div>your content1</div>
-    <div>
-      <p>Good Morning</p>
-      <p>slider1</p>
+  <div class="slide">
+    <div class="content-wrap">
+      <div>your content1</div>
+      <div>
+        <p>Good Morning</p>
+      </div>
     </div>
   </div>
-  <div>
-    <div>your content2</div>
-    <div>
-      <p>Good Afternoon</p>
+  <div class="slide">
+    <div class="content-wrap">
+      <div>your content2</div>
+      <div>
+        <p>Good Afternoon</p>
+      </div>
     </div>
   </div>
-  <div>
-    <div>your content3</div>
-    <div>
-      <p>Good Evening</p>
+  <div class="slide">
+    <div class="content-wrap">
+      <div>your content3</div>
+      <div>
+        <p>Good Evening</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="content-wrap">
+      <div>your content4</div>
+      <div>
+        <p>Hello World</p>
+      </div>
     </div>
   </div>
 </div>
