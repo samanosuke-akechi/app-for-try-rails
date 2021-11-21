@@ -2,7 +2,7 @@
 <%# それとスライド1枚1枚としての子要素(下記の例だとclass="slide") %>
 <%# タグやクラス名やIDに縛りは特にない(ulとli要素などでもOK) %>
 
-<div class="your-class">
+<%# <div class="your-class">
   <div class="slide">
     <div class="content-wrap">
       <div>your content1</div>
@@ -35,4 +35,18 @@
       </div>
     </div>
   </div>
+</div> %>
+
+
+<%# 応用(rubyの繰り返しを絡めた実装) %>
+
+<div class="your-class">
+  <% @posts_limit10.each do |post| %>
+    <div class="slide">
+      <div class="content-wrap">
+        <p>タイトル： <%= post.title %></p>
+        <p>本文： <%= post.text %></p>
+      </div>
+    </div>
+  <% end %>
 </div>

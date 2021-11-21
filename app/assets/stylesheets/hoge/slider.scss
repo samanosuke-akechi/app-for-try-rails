@@ -1,15 +1,17 @@
 .your-class {
-  width: 30vw;
+  width: 50vw;
   margin: 0 auto;
   // スライド
   .slide {
-    height: 100px;
+    height: 300px;
     border: 1px solid blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     .content-wrap {
+      height: 100%;
       border: 1px solid black;
+      overflow-wrap: break-word;
     }
   }
   // 左右のボタン
