@@ -1,0 +1,29 @@
+.your-class {
+  width: 50vw;
+  margin: 0 auto;
+  // スライド
+  .slide {
+    height: 300px;
+    border: 1px solid blue;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    .content-wrap {
+      height: 100%;
+      border: 1px solid black;
+      overflow-wrap: break-word;
+    }
+  }
+  // 左右のボタン
+  .slick-prev {
+    height: 100px;
+    width: 100px;
+    left: -100px;
+  }
+  .slick-next {
+    height: 100px;
+    width: 100px;
+    right: -100px;
+  }
+}
+
