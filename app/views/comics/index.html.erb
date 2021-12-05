@@ -5,10 +5,11 @@
 
 <% @comics.each do |comic| %>
   <div>
+    <p>ID：<%= comic.id %></p>
     <p>タイトル：<%= comic.title %></p>
     <p>作者：<%= comic.author %></p>
     <% comic.genres.each do |genre| %>
-      <% if genre.name %>
+      <% if genre.name.present? %> <!-- nilまたは空文字を登録してるジャンルが表示されないようにしてる -->
         <p>ジャンル：<%= genre.name %></p>
       <% end %>
     <% end %>
