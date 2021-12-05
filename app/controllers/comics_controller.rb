@@ -1,6 +1,6 @@
 class ComicsController < ApplicationController
   def index
-    @comics = Comic.all
+    @comics = Comic.all.order(created_at: :desc)
   end
 
   def new
