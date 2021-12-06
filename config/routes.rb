@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "posts#index"
+  resources :comics, except: [:destroy]
   resources :posts, only: [:index]
 
   namespace :api do

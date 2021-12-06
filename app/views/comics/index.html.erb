@@ -1,0 +1,18 @@
+<h1>Comics#index</h1>
+<p>Find me in app/views/comics/index.html.erb</p>
+
+<%= link_to '漫画登録', new_comic_path %>
+
+<% @comics.each do |comic| %>
+  <div>
+    <p>ID：<%= comic.id %></p>
+    <p>タイトル：<%= comic.title %></p>
+    <p>作者：<%= comic.author %></p>
+    <% comic.genres.each do |genre| %>
+      <% if genre.name.present? %> <!-- nilまたは空文字を登録してるジャンルが表示されないようにしてる -->
+        <p>ジャンル：<%= genre.name %></p>
+      <% end %>
+    <% end %>
+  </div>
+  <div><%= link_to '編集する', edit_comic_path(comic) %></div>
+<% end %>
