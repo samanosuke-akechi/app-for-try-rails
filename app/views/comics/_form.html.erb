@@ -1,0 +1,23 @@
+<%= form_with model: @comic_genre, url: @comic_genre.comic, locla: true do |f| %>
+  <%= fields_for 'comic_genre[comic]', f.object.comic do |ff| %>
+    <div>
+      <%= ff.label :title %>
+      <%= ff.text_field :title %>
+    </div>
+    <div>
+      <%= ff.label :author %>
+      <%= ff.text_field :author %>
+    </div>
+  <% end %>
+  <div>
+    <% f.object.genres.each do |genre| %>
+      <%= fields_for 'comic_genre[genres][]', genre do |ff| %>
+        <%= ff.label :name %>
+        <%= ff.text_field :name %>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit '登録' %>
+  </div>
+<% end %>
