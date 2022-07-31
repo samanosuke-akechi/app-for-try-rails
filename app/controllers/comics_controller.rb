@@ -1,18 +1,15 @@
 class ComicsController < ApplicationController
   def index
-    @comics = Comic.all.order(created_at: :desc)
+    @comics = Comic.all.includes(:genres).order(created_at: :desc)
   end
 
   def new
-    @comic = Comic.new
-    @genres = ComicGenreForm.new
+    @comic_genre = ComicGenreForm.new
   end
 
   def create
-    @comic = Comic.new(comic_params)
-    @genres = ComicGenreForm.new
-    if @comic.save
-      @genres.save(genre_params, @comic.id)
+    @comic_genre = ComicGenreForm.new(comic_genre_params)
+    if @comic_genre.save
       redirect_to action: :index
     else
       render :new
@@ -20,25 +17,13 @@ class ComicsController < ApplicationController
   end
 
   def edit
-    @comic = Comic.find(params[:id])
-    if @comic.genres.count < 3
-      (3 - @comic.genres.count).times do
-        Genre.create(comic_id: @comic.id)
-      end
-      @genres = @comic.genres
-    else
-      @genres = @comic.genres
-    end
+    @comic_genre = ComicGenreForm.new(comic_id: params[:id])
   end
 
   def update
-    @comic = Comic.find(params[:id])
-    if @comic.update(comic_params)
-      genre_params.keys.each do |id|
-        genre = Genre.find(id)
-        genre.update(name: genre_params[id][:name])
-      end
-      redirect_to action: :index
+    @comic_genre = ComicGenreForm.new(comic_genre_params, comic_id: params[:id])
+    if @comic_genre.update(comic_genre_params)
+      redirect_to comics_path
     else
       render :edit
     end
@@ -46,11 +31,7 @@ class ComicsController < ApplicationController
 
   private
 
-  def comic_params
-    params.require(:comic).permit(:title, :author)
-  end
-
-  def genre_params
-    params.require(:genres)
+  def comic_genre_params
+    params.require(:comic_genre).permit(comic: [:title, :author], genres: :name)
   end
 end

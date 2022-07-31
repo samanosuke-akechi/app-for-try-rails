@@ -1,4 +1,8 @@
 class Comic < ApplicationRecord
-  has_many :genres
-  accepts_nested_attributes_for :genres
+  has_many :genres, dependent: :destroy
+
+  with_options presence: true do
+    validates :title
+    validates :author
+  end
 end
