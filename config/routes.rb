@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root "posts#index"
   resources :comics, except: [:destroy]
-  resources :posts, only: [:index]
+  resources :posts, only: [:index] do
+    collection do
+      get 'google_map'
+    end
+  end
 
   namespace :api do
     get 'postal_code_search/search'
