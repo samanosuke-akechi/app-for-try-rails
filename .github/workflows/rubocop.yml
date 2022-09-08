@@ -1,5 +1,8 @@
 name: reviewdog
 on: [pull_request]
+permissions:
+  contents: read
+  pull-requests: write
 jobs:
   rubocop:
     name: runner / rubocop
@@ -11,9 +14,8 @@ jobs:
         with:
           ruby-version: 3.0.0
       - name: rubocop
-        uses: reviewdog/action-rubocop@v1
+        uses: reviewdog/action-rubocop@v2
         with:
           rubocop_version: gemfile
           rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
-          github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Default is github-pr-check
