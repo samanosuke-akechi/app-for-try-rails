@@ -28,7 +28,7 @@ class ComicsController < ApplicationController
       render :edit
     end
   end
-
+puts hoge
   private
 
   def comic_genre_params
