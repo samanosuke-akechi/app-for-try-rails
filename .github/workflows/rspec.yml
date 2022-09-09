@@ -5,8 +5,8 @@ permissions:
   pull-requests: write
 jobs:
   rspec:
-    name: runner / rspec
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     services:
       mysql:
         image: mysql:8.0
@@ -32,16 +32,20 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Bundler and gem install
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3 --path vendor/bundle
+
       - name: Yarn install
         run: yarn install --check-files
+
       - name: Database create and migrate
         run: |
-          touch /tmp/mysql.sock
+          cp config/database.yml.ci config/database.yml
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
+
       - name: Run rspec
         run: bundle exec rspec
