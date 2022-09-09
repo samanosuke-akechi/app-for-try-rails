@@ -1,18 +1,9 @@
-name: rspec
+name: Test
 
-# masterブランチへのPR時の実行
 on:
   pull_request:
     branches:
-    - development
-    # ex.
-    # # Trigger the workflow on push or pull request
-    # on: [push, pull_request]
-    # # Trigger the workflow on pull request activity
-    # on:
-    #   release
-    #     # Only use the types keyword to narrow down the activity types that will trigger your workflow.
-    #     types: [published, created, edited]
+      - development # mainブランチに向けたプルリクエスト作成時に実行
 
 jobs:
   rspec:
