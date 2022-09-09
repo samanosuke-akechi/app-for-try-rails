@@ -1,8 +1,5 @@
 name: Run rspec
 on: [pull_request]
-permissions: 
-  contents: read
-  pull-requests: write
 jobs:
   run_spec:
     name: Run spec
