@@ -40,6 +40,7 @@ jobs:
         run: yarn install --check-files
       - name: Database create and migrate
         run: |
+          touch /tmp/mysql.sock
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
       - name: Run rspec
