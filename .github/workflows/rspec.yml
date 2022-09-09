@@ -1,0 +1,40 @@
+name: Run rspec
+on: pull_request
+permissions: 
+  contents: read
+  pull-requests: write
+jobs:
+  rspec:
+    name: runner / rspec
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql: 8.0
+        pots:
+          - 3306:3306
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with: 
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore_keys: |
+            ${{ runner.os }}-node-
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --path vendor/bundle
+      - name: Yarn install
+        run: yarn install --check-files
+      - name: Database create and migrate
+        run: |
+          cp config/database.yml.ci config/database.yml
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
+      - name: Run rspec
+        run: bundle exec rspec
