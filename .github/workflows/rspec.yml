@@ -9,21 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql: 8.0
-        pots:
+        image: mysql:8.0
+        ports:
           - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+
     steps:
-      - name: Check out code
-        uses: actions/checkout@v1
-      - uses: ruby/setup-ruby@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          bundler-cache: true
+
       - name: Cache node modules
         uses: actions/cache@v2
-        with: 
+        with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore_keys: |
+          restore-keys: |
             ${{ runner.os }}-node-
       - name: Bundler and gem install
         run: |
