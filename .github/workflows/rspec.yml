@@ -54,5 +54,4 @@ jobs:
 
       - name: Run rspec
         run:
-          echo "ths is env=$GOOGLE_MAP_API_KEY"
           bundle exec rspec
