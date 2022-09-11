@@ -20,8 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: |
-          echo "(1) ths is env=$GOOGLE_MAP_API_KEY"
-          echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY" >> $GITHUB_ENV
+          echo "ths is env=$GOOGLE_MAP_API_KEY"
         env:
           GOOGLE_MAP_API_KEY: "hoge"
 
@@ -53,5 +52,4 @@ jobs:
           bundle exec rails db:migrate RAILS_ENV=test
 
       - name: Run rspec
-        run:
-          bundle exec rspec
+        run: bundle exec rspec
