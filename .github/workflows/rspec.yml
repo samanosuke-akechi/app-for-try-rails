@@ -1,7 +1,6 @@
 name: Run rspec
 
 on:
-  push:
   pull_request:
 
 jobs:
@@ -20,6 +19,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - run: |
+          echo "(1) ths is env=$GOOGLE_MAP_API_KEY"
+          echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY" >> $GITHUB_ENV
+        env:
+          GOOGLE_MAP_API_KEY: "hoge"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -49,4 +53,6 @@ jobs:
           bundle exec rails db:migrate RAILS_ENV=test
 
       - name: Run rspec
-        run: bundle exec rspec
+        run:
+          echo "ths is env=$GOOGLE_MAP_API_KEY"
+          bundle exec rspec
