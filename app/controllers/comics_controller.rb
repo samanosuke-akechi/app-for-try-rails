@@ -1,6 +1,7 @@
 class ComicsController < ApplicationController
   def index
     @comics = Comic.all.includes(:genres).order(created_at: :desc)
+    ENV.fetch('GOOGLE_MAP_API_KEY')
   end
 
   def new
