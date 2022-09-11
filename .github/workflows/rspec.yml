@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v2
       - run: |
           echo "ths is env=$GOOGLE_MAP_API_KEY"
+          echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY" >> $GITHUB_ENV
         env:
           GOOGLE_MAP_API_KEY: "hoge"
 
