@@ -20,9 +20,9 @@ jobs: # 処理実行のまとまりの単位。これの配下に処理内容を
         with: # アクションに必要な入力パラメーターの設定。必要な時に設定する。
           ruby-version: 3.0.0
       - name: rubocop
-        uses: reviewdog/action-rubocop@v2 # rubocopを実行して、その結果をプルリクにコメントするためのアクション
-        # https://github.com/reviewdog/action-rubocop
-        with:
-          rubocop_version: gemfile
-          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
-          reporter: github-pr-review # Default is github-pr-check
+        # uses: reviewdog/action-rubocop@v2 # rubocopを実行して、その結果をプルリクにコメントするためのアクション
+        # # https://github.com/reviewdog/action-rubocop
+        # with:
+        #   rubocop_version: gemfile
+        #   rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
+        #   reporter: github-pr-review # Default is github-pr-check
