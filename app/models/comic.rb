@@ -1,3 +1,4 @@
+# comic model
 class Comic < ApplicationRecord
   has_many :genres, dependent: :destroy
 
