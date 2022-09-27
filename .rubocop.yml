@@ -1,0 +1,12 @@
+# rubocopの構文チェックのルールをカスタマイズするためのファイル
+# 構文チェックのオプション一覧(GitHub): https://github.com/rubocop/rubocop/blob/master/config/default.yml
+
+# 以下のAllCopsの配下のNewCops: enableとすることでカスタマイズしたルールが有効になるらしい
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+ Enabled: false
