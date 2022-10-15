@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_05_132624) do
+ActiveRecord::Schema.define(version: 2021_11_16_011847) do
 
   create_table "comics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
@@ -34,16 +34,5 @@ ActiveRecord::Schema.define(version: 2022_09_05_132624) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "relation_comics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "first_comic_id", null: false
-    t.bigint "second_comic_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["first_comic_id"], name: "index_relation_comics_on_first_comic_id"
-    t.index ["second_comic_id"], name: "index_relation_comics_on_second_comic_id"
-  end
-
   add_foreign_key "genres", "comics"
-  add_foreign_key "relation_comics", "comics", column: "first_comic_id"
-  add_foreign_key "relation_comics", "comics", column: "second_comic_id"
 end
