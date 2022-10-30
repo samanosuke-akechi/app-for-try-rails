@@ -24,8 +24,6 @@ jobs:
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
-        run: |
-          bundle lock --add-platform x86_64-linux
         with:
           bundler-cache: true
 
