@@ -1,0 +1,28 @@
+# ワークフローは1 つ以上のジョブを実行する構成可能な自動化プロセスということらしい。
+# ワークフローについて: https://docs.github.com/ja/actions/using-workflows/about-workflows
+# ワークフロー用のYAML構文: https://docs.github.com/ja/actions/using-workflows/workflow-syntax-for-github-actions
+
+name: reviewdog # ワークフローの名前。リポジトリのアクションページに表示される
+on: [pull_request] # ワークフローを実行するトリガーの設定。pull_requestならプルリクのタイミングで実行される。
+permissions: # ワークフローが持つ権限を設定する。ここで設定しない場合は全てに対して権限がある。
+  contents: read # リポジトリのコンテンツ？コミットやブランチなどgit関連の権限っぽい。左はそれの読み取り権限の付与
+  pull-requests: write # プルリクエストに対する権限。それの書き込み権限の付与
+jobs: # 処理実行のまとまりの単位。これの配下に処理内容を設定する
+  rubocop: # job_id。
+    name: runner / rubocop # jobの名前。
+    runs-on: ubuntu-latest # jobを実行するマシンの種類を設定。以下のURLに選べるマシンの種類が記載されてる
+    # https://docs.github.com/ja/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    steps: # jobで実行する一連のタスクなどをこれの配下に設定する。
+      - name: Check out code # ステップの名前
+        # usesはjobでステップの一部として実行されるアクションを設定する。
+        uses: actions/checkout@v1 # checkoutするためのアクション。https://github.com/actions/checkout
+      - uses: ruby/setup-ruby@v1 # actionsでrubyを使う。https://github.com/ruby/setup-ruby
+        with: # アクションに必要な入力パラメーターの設定。必要な時に設定する。
+          ruby-version: 3.0.0
+      - name: rubocop
+        uses: reviewdog/action-rubocop@v2 # rubocopを実行して、その結果をプルリクにコメントするためのアクション
+        # https://github.com/reviewdog/action-rubocop
+        with:
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
+          reporter: github-pr-review # Default is github-pr-check
