@@ -13,9 +13,23 @@
 
 <%= render partial: 'slider_posts' %>
 
-<% @posts.each do |post| %>
-  <div>
-    <p><%= post.title %></p>
-    <p><%= post.text %></p>
-  </div>
-<% end %>
+<div id="sortable" style="width: 80vw; margin: 0 auto;" data-sort-url="<%= sort_posts_path %>">
+  <% @posts.each do |post| %>
+    <div class="d-flex align-items-center">
+      <i class="bi bi-grid-3x2-gap me-3 sort-handle"></i>
+      <div>
+        <p><%= post.title %></p>
+        <p style="overflow-wrap: break-word;"><%= post.text %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .sort-handle {
+    cursor: grab;
+  }
+  .sort-handle:active {
+    cursor: grabbing;
+  }
+</style>
