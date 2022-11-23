@@ -15,21 +15,21 @@ class Post < ApplicationRecord
     end
   end
 
-  def update_sort_priority(oldIndex, newIndex)
-    return if oldIndex == newIndex
+  def update_sort_priority(old_index, new_index)
+    return if old_index == new_index
 
-    sort_range = (oldIndex - newIndex) < 0 ? oldIndex..newIndex : newIndex..oldIndex
-    index_change = (oldIndex - newIndex) < 0 ? -1 : 1
+    sort_range = (old_index - new_index).negative? ? old_index..new_index : new_index..old_index
+    index_change = (old_index - new_index).negative? ? -1 : 1
     posts = Post.where(sort_priority: sort_range)
 
     posts.each do |post|
-      next if post.sort_priority == oldIndex
+      next if post.sort_priority == old_index
 
       post.sort_priority = post.sort_priority + index_change
       post.save
     end
 
-    self.sort_priority = newIndex
+    self.sort_priority = new_index
     save
   end
 end
