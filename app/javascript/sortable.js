@@ -15,8 +15,6 @@ window.onload = function() {
         url: url,
         data: { oldIndex: e.oldIndex, newIndex: e.newIndex },
         type: 'post'
-      }).done(function(response) {
-        console.log(response);
       })
     }
   });
