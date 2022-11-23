@@ -18,7 +18,7 @@ class Post < ApplicationRecord
   def update_sort_priority(oldIndex, newIndex)
     return if oldIndex == newIndex
 
-    sort_range = (oldIndex - newIndex) < 0 ? [*oldIndex..newIndex] : [*newIndex..oldIndex]
+    sort_range = (oldIndex - newIndex) < 0 ? oldIndex..newIndex : newIndex..oldIndex
     index_change = (oldIndex - newIndex) < 0 ? -1 : 1
     posts = Post.where(sort_priority: sort_range)
 
