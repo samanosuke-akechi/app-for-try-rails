@@ -23,6 +23,7 @@ class ComicGenreForm
   def save
     ActiveRecord::Base.transaction do
       result = comic.save
+      return false unless result
 
       genres.each do |genre|
         genre.comic = comic
