@@ -3,7 +3,7 @@ class Post < ApplicationRecord
 
   def save_sort_priority
     lowest_priority = Post.maximum(:sort_priority)
-    self.sort_priority = lowest_priority + 1
+    self.sort_priority = lowest_priority.nil? ? 0 : lowest_priority + 1
     save
   end
 
