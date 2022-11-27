@@ -1,3 +1,5 @@
+import 'slick-carousel';
+
 $(window).on("load", function() {
   // スライドを形作るのに最低限必要なのは$(セレクタ).slick({})
   // スライダーにしたいHTMLの親要素のクラスまたはIDをセレクタにする

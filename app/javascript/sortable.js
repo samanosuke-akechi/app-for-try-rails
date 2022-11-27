@@ -1,4 +1,4 @@
-import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
+import Sortable from 'sortablejs';
 
 window.onload = function() {
   const el = document.getElementById('sortable');
@@ -14,7 +14,10 @@ window.onload = function() {
       $.ajax({
         url: url,
         data: { oldIndex: e.oldIndex, newIndex: e.newIndex },
-        type: 'post'
+        type: 'post',
+        headers: {
+          'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
+        }
       })
     }
   });
