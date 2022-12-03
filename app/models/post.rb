@@ -1,15 +1,23 @@
 class Post < ApplicationRecord
-  after_create :save_sort_priority
+  before_create :set_sort_priority
+  after_destroy :reset_sort_priority
 
-  def save_sort_priority
+  def set_sort_priority
     lowest_priority = Post.maximum(:sort_priority)
     self.sort_priority = lowest_priority.nil? ? 0 : lowest_priority + 1
-    save
   end
 
-  def self.reset_sort_priority
+  def self.reset_sort_priority_by_id
     num = 0
     order(:id).each do |post|
+      post.update(sort_priority: num)
+      num += 1
+    end
+  end
+
+  def reset_sort_priority
+    num = 0
+    Post.order(:sort_priority).each do |post|
       post.update(sort_priority: num)
       num += 1
     end
