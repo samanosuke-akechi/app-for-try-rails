@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_06_080609) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_03_125737) do
   create_table "comics", charset: "utf8", force: :cascade do |t|
     t.string "title", null: false
     t.string "author", null: false
@@ -32,6 +32,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_06_080609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "sort_priority"
+  end
+
+  create_table "tweets", charset: "utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "genres", "comics"
