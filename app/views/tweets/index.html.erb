@@ -1,0 +1,27 @@
+<main>
+  <div>
+    <%= link_to '新規作成', new_tweet_path %>
+  </div>
+
+  <div id="tweets">
+    <% @tweets.each do |tweet| %>
+      <div class="m-2">
+        <div><%= tweet.title %></div>
+        <div class="textarea"><%= tweet.text %></div>
+        <% tweet.tweet_tags.each do |tag| %>
+          <div><%= "##{tag.name}" %></div>
+        <% end %>
+        <div><%= link_to '編集', edit_tweet_path(tweet) %></div>
+      </div>
+    <% end %>
+  </div>
+</main>
+
+<style>
+  main {
+    padding: 2rem;
+  }
+  .textarea {
+    white-space: pre-wrap;
+  }
+</style>
