@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root "posts#index"
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root 'posts#index'
   resources :comics, except: [:destroy]
   resources :posts, only: [:index] do
     collection do
@@ -13,9 +15,11 @@ Rails.application.routes.draw do
   end
 
   # コマンドでcontrollerファイルをディレクトリ階層いかに生成した場合、以下のようにルーティングが自動記述される。
-  namespace :hoge do # namespace ディレクトリ名でURLを"/ディレクトリ名/コントローラー名", 見に行くコントローラーも"/ディレクトリ名/コントローラー名"になる。実装によってscopeやscope moduleなどを使い分けるとよい
+  # namespace ディレクトリ名でURLを"/ディレクトリ名/コントローラー名", 見に行くコントローラーも"/ディレクトリ名/コントローラー名"になる。実装によってscopeやscope moduleなどを使い分けるとよい
+  namespace :hoge do
     # get 'posts/index'
     resources :posts, only: [:index]
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :tweets, only: [:index, :new, :create, :edit, :update]
 end

@@ -1,0 +1,37 @@
+<main>
+  <%= form_with model: tweet, local: true, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+    <div class="m-1">
+      <%= f.label :title, style: 'display: block;' %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="m-1">
+      <%= f.label :text, style: 'display: block;' %>
+      <%= f.text_area :text %>
+    </div>
+
+    <template data-nested-form-target="template">
+      <%= f.fields_for :tweet_tags, TweetTag.new, child_index: 'NEW_RECORD' do |ff| %>
+        <%= render 'tweet_tag_form', ff: ff %>
+      <% end %>
+    </template>
+
+    <%= f.fields_for :tweet_tags do |ff| %>
+      <%= render 'tweet_tag_form', ff: ff %>
+    <% end %>
+
+    <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add">Add todo</button>
+
+    <div class="m-1">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</main>
+
+<style>
+  main {
+    padding: 2rem;
+  }
+</style>

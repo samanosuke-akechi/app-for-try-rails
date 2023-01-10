@@ -3,3 +3,4 @@
 import 'jquery_init'; // jQueryの初期化
 import 'try_slick';
 import 'sortable';
+import 'controllers'
