@@ -1,4 +1,4 @@
-<main>
+<main class="p-4">
   <%= form_with model: tweet, local: true, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
     <div class="m-1">
       <%= f.label :title, style: 'display: block;' %>
@@ -24,14 +24,39 @@
 
     <button type="button" data-action="nested-form#add">Add todo</button>
 
+    <div class="m-1" data-controller="image-form">
+      <%= f.fields_for :tweet_image, @tweet_image do |ff| %>
+        <%= ff.label :storage_file, style: 'display: block;' %>
+        <!-- direct_upload: true でバリデーションエラー時にも先んじて紐付けなしでblobに画像を保存する -->
+        <%= ff.file_field :storage_file,
+                          direct_upload: true,
+                          data: { action: 'input->image-form#preview', image_form_target: 'inputFile' } %>
+
+        <%= ff.hidden_field :_destroy, data: { image_form_target: 'removeImageFlag' } %>
+
+        <div class="d-flex">
+          <% if @tweet_image.attached? %>
+            <div class="me-5" id="currentImageWrapper">
+              <p>現在の画像</p>
+              <%#= @tweet.tweet_image.storage_file.filename でファイル名を表示できる %>
+              <%= image_tag @tweet_image.storage_file, class: 'tweet-image' %>
+              <%= button_tag '画像を削除する', type: 'button',
+                             data: { action: 'click->image-form#removeImage', image_form_target: 'removeImageButton' } %>
+            </div>
+          <% end %>
+
+          <template data-image-form-target="newImage">
+            <p>新しい画像</p>
+            <%= image_tag '', class: 'tweet-image' %>
+            <%= button_tag 'キャンセル', type: 'button', data: { action: 'click->image-form#cancelNewImage' } %>
+          </template>
+          <div data-image-form-target="newImageWrapper"></div>
+        </div>
+      <% end %>
+    </div>
+
     <div class="m-1">
       <%= f.submit %>
     </div>
   <% end %>
 </main>
-
-<style>
-  main {
-    padding: 2rem;
-  }
-</style>

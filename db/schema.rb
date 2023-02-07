@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_16_152543) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -62,6 +62,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_152543) do
     t.integer "sort_priority"
   end
 
+  create_table "tweet_images", charset: "utf8", force: :cascade do |t|
+    t.bigint "tweet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_tweet_images_on_tweet_id"
+  end
+
   create_table "tweet_tags", charset: "utf8", force: :cascade do |t|
     t.bigint "tweet_id", null: false
     t.string "name", null: false
@@ -80,5 +87,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_152543) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "genres", "comics"
+  add_foreign_key "tweet_images", "tweets"
   add_foreign_key "tweet_tags", "tweets"
 end
