@@ -52,6 +52,5 @@ test:
 production:
   <<: *default
   database: app_for_try_rails_production
-  username: app_for_try_rails
   password: <%= ENV['APP_FOR_TRY_RAILS_DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
