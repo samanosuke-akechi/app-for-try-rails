@@ -15,3 +15,7 @@ num = 1
   )
   num += 1
 end
+
+5.times do
+  FactoryBot.create(:tweet_image)
+end
