@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'factory_bot_rails'
-
 num = 1
 
 100.times do |data|
@@ -18,6 +16,14 @@ num = 1
   num += 1
 end
 
+num = 1
+file_path = 'spec/fixtures/300x300.png'
+
 5.times do
-  FactoryBot.create(:tweet_image)
+  tweet = Tweet.create!(
+    title: "ツイート#{num}",
+    text: "ツイート#{num}のテキスト\nツイート#{num}のテキスト\nツイート#{num}のテキスト"
+  )
+  tweet_image = TweetImage.new(tweet: tweet)
+  tweet_image.storage_file.attach(io: File.open(file_path), filename: File.basename(file_path))
 end
