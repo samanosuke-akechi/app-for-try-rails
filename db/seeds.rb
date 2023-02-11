@@ -15,3 +15,15 @@ num = 1
   )
   num += 1
 end
+
+num = 1
+file_path = 'spec/fixtures/300x300.png'
+
+5.times do
+  tweet = Tweet.create!(
+    title: "ツイート#{num}",
+    text: "ツイート#{num}のテキスト\nツイート#{num}のテキスト\nツイート#{num}のテキスト"
+  )
+  tweet_image = TweetImage.new(tweet: tweet)
+  tweet_image.storage_file.attach(io: File.open(file_path), filename: File.basename(file_path))
+end
