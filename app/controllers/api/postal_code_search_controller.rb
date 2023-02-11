@@ -1,4 +1,6 @@
 class Api::PostalCodeSearchController < ApplicationController
+  require 'net/http'
+
   def search
     if postal_code = params[:postal_code] # フォームに郵便番号が入力されているとき
       params = URI.encode_www_form({zipcode: postal_code}) # "zipcode=postal_code"という文字列を作ってる
