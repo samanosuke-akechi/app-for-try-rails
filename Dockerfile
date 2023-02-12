@@ -4,6 +4,7 @@ RUN apt-get update \
     build-essential \
     nodejs \
     vim \
+    libvips libvips-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /app-for-try-rails
