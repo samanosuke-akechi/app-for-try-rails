@@ -37,6 +37,7 @@ class TweetsController < ApplicationController
     params.require(:tweet).permit(
       :title,
       :text,
+      :accept,
       tweet_image_attributes: [:id, :_destroy, :storage_file],
       tweet_tags_attributes: [:id, :_destroy, :name]
     )
