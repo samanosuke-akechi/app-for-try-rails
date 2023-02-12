@@ -14,5 +14,5 @@ pin '@hotwired/stimulus-loading', to: 'stimulus-loading.js', preload: true
 pin_all_from 'app/javascript/controllers', under: 'controllers'
 pin 'stimulus-rails-nested-form', to: 'https://ga.jspm.io/npm:stimulus-rails-nested-form@4.0.0/dist/stimulus-rails-nested-form.es.js'
 pin '@rails/activestorage', to: 'https://ga.jspm.io/npm:@rails/activestorage@7.0.4-2/app/assets/javascripts/activestorage.esm.js'
-pin "trix"
-pin "@rails/actiontext", to: "actiontext.js"
+pin 'trix'
+pin '@rails/actiontext', to: 'actiontext.js'
