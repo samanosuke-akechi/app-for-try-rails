@@ -6,6 +6,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'db/**/*'
+    - '**/*.*.jbuilder'
 
 Style/Documentation:
   Enabled: false
