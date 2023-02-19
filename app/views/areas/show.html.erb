@@ -3,8 +3,22 @@
 <%= render @area %>
 
 <div>
+  <h3>食品</h3>
+  <% @area.foods.each do |food| %>
+    <div>
+      <%= food.name %>
+    </div>
+    <div>
+      <%= "#{food.price.to_formatted_s(:delimited)}円" %>
+    </div>
+  <% end %>
+</div>
+
+<div>
   <%= link_to "Edit this area", edit_area_path(@area) %> |
-  <%= link_to "Back to areas", areas_path %>
+  <%= link_to "Back to areas", areas_path %> |
+  <%= link_to '食品登録', new_area_foods_path(@area) if @area.foods.blank? %>
+  <%= link_to '食品編集', edit_area_foods_path(@area) if @area.foods.present? %>
 
   <%= button_to "Destroy this area", @area, method: :delete %>
 </div>
