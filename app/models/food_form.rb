@@ -47,20 +47,25 @@ class FoodForm
 
   def save
     ActiveRecord::Base.transaction do
-      result = valid?
       foods.each do |food|
         # 外部キーが入っているパターンで他の値がすべて空の時にvalues.compact.blank?だと弾けないので以下の判定方法を採用
         # nameとpriceがどちらも空の場合はsaveしない
-        result &= if food.attributes.values_at('name', 'price').reject(&:blank?).blank?
-                    food.destroy # destroyの戻り値は空のオブジェクトでもtrue扱いになる
-                  else
-                    food.save
-                  end
+        if food.attributes.values_at('name', 'price').reject(&:blank?).blank?
+          food.destroy! # destroyの戻り値は空のオブジェクトでもtrue扱いになる
+        else
+          food.save!
+        end
       end
-
+      result = valid?
+      # このクラス自体に設けたバリデーションに引っかかった際のロールバックを発生させるため
       raise ActiveRecord::Rollback unless result
 
       result
+      # rspecでテストする際に'result &= false'した時にrescueなしだとrollbackしてくれず、
+      # 戻り値もfalseではなくnilになってしまうので、rescueを使用した制御を採用。
+      # 開発環境だと以下のresucueなしで上記のraiseだけでrollbackしてfalseを返してくれるが、この挙動の差の原因がわからず...
+    rescue ActiveRecord::RecordInvalid
+      false
     end
   end
 end
