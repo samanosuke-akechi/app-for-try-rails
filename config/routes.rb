@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :areas do
+    # 単数形リソース(resource)なので通常は単数形で書くが、複数のfoodsを取り扱うため複数形で定義している
+    resource :foods, only: [:new, :create, :edit, :update], module: :areas, controller: :foods
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root 'posts#index'
