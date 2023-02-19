@@ -15,3 +15,7 @@ Style/FrozenStringLiteralComment:
 
 Style/SymbolArray:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
