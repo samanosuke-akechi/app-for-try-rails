@@ -19,6 +19,7 @@ Style/SymbolArray:
 
 Metrics/BlockLength:
   Exclude:
+    - 'config/*'
     - 'spec/**/*'
 
 Metrics/MethodLength:
