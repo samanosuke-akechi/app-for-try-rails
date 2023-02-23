@@ -1,3 +1,12 @@
+<% content_for :css do %>
+  <%= stylesheet_link_tag slick_css_url %>
+  <%= stylesheet_link_tag slick_theme_css_url %>
+  <%= stylesheet_link_tag bootstrap_icons_css_url %>
+<% end %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag bootstrap_javascript_url %>
+<% end %>
+
 <div>
   <%= link_to "郵便番号API利用", api_postal_code_search_search_path %>
 </div>
