@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_151546) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_155735) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,6 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_151546) do
     t.string "author", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "food_tags", charset: "utf8", force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_food_tags_on_food_id"
+    t.index ["tag_id"], name: "index_food_tags_on_tag_id"
   end
 
   create_table "foods", charset: "utf8", force: :cascade do |t|
@@ -107,6 +116,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_151546) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "food_tags", "foods"
+  add_foreign_key "food_tags", "tags"
   add_foreign_key "foods", "areas"
   add_foreign_key "genres", "comics"
   add_foreign_key "tweet_images", "tweets"
