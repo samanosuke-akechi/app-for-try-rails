@@ -3,11 +3,11 @@ module Areas
     before_action :set_area
 
     def new
-      @food_form = FoodForm.new
+      @food_form = FoodForm.new(area: @area)
     end
 
     def create
-      @food_form = FoodForm.new(food_form_params)
+      @food_form = FoodForm.new(food_form_params, area: @area)
       if @food_form.save
         redirect_to area_path(@area)
       else
@@ -21,7 +21,7 @@ module Areas
 
     def update
       @food_form = FoodForm.new(food_form_params, area: @area)
-      if @food_form.save
+      if @food_form.update(food_form_params)
         redirect_to area_path(@area)
       else
         # エラーメッセージをフロントに表示させたい場合は
@@ -38,7 +38,7 @@ module Areas
     end
 
     def food_form_params
-      params.require(:food_form).permit(:consent, foods: [:id, :area_id, :name, :price])
+      params.require(:food_form).permit(:consent, foods: [:id, :area_id, :name, :price, { tag_ids: [] }])
     end
   end
 end
