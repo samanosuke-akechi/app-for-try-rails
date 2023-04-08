@@ -1,11 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe FoodForm, type: :model do
-  let(:food_form) { FactoryBot.build(:food_form) }
+  let(:tag_ids) { FactoryBot.create_list(:tag, 2).pluck(:id) }
+  let(:food_form) do
+    food_attributes = {}
+    3.times do |index|
+      food_attributes[index] = FactoryBot.attributes_for(:food)
+      food_attributes[index][:tag_ids] = tag_ids
+    end
+    attributes = { foods: food_attributes, consent: true }
+    described_class.new(attributes, area: FactoryBot.create(:area))
+  end
 
   describe 'FoodForm登録' do
     context 'FoodFormが登録できるとき' do
       it 'すべての情報があれば登録できる' do
+        expect(food_form.save).to eq true
+      end
+
+      it 'foodに紐づくtagsがなくても登録できる' do
+        food_form.foods.first.tags = []
         expect(food_form.save).to eq true
       end
     end
