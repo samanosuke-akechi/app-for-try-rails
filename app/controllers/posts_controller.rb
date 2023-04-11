@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.order(:sort_priority).limit(10)
     @posts_limit10 = Post.all.limit(10)
-    logger.info "Postのタイトル: #{@posts.first.title}"
+    logger.info "Postのタイトル: #{@posts.first.title}" if @posts.present?
   end
 
   def google_map; end
