@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
-  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_155735) do
+  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,20 +33,44 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "comics", charset: "utf8", force: :cascade do |t|
+  create_table "areas", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comics", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.string "author", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", charset: "utf8", force: :cascade do |t|
+  create_table "food_tags", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_food_tags_on_food_id"
+    t.index ["tag_id"], name: "index_food_tags_on_tag_id"
+  end
+
+  create_table "foods", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "area_id", null: false
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_foods_on_area_id"
+  end
+
+  create_table "genres", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.bigint "comic_id", null: false
     t.datetime "created_at", null: false
@@ -54,7 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
     t.index ["comic_id"], name: "index_genres_on_comic_id"
   end
 
-  create_table "posts", charset: "utf8", force: :cascade do |t|
+  create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "text"
     t.datetime "created_at", null: false
@@ -62,14 +86,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
     t.integer "sort_priority"
   end
 
-  create_table "tweet_images", charset: "utf8", force: :cascade do |t|
+  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tweet_images", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "tweet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tweet_id"], name: "index_tweet_images_on_tweet_id"
   end
 
-  create_table "tweet_tags", charset: "utf8", force: :cascade do |t|
+  create_table "tweet_tags", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "tweet_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -77,7 +107,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
     t.index ["tweet_id"], name: "index_tweet_tags_on_tweet_id"
   end
 
-  create_table "tweets", charset: "utf8", force: :cascade do |t|
+  create_table "tweets", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.text "text", null: false
     t.datetime "created_at", null: false
@@ -86,6 +116,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_165743) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "food_tags", "foods"
+  add_foreign_key "food_tags", "tags"
+  add_foreign_key "foods", "areas"
   add_foreign_key "genres", "comics"
   add_foreign_key "tweet_images", "tweets"
   add_foreign_key "tweet_tags", "tweets"

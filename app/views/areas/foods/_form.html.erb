@@ -1,0 +1,25 @@
+<% f.object.foods.each do |food| %>
+  <%= fields_for "food_form[foods][#{fields_for_index(@food_form.foods, food)}]", food do |ff| %>
+    <div>
+      <%= ff.label :name, style: 'display: block;' %>
+      <%= ff.text_field :name %>
+    </div>
+    <div>
+      <%= ff.label :price, style: 'display: block;' %>
+      <%= ff.text_field :price %>
+    </div>
+    <div>
+      <%= ff.label 'タグ', style: 'display: block;' %>
+      <%= ff.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+    </div>
+
+    <%= ff.hidden_field :id, value: food.id %>
+  <% end %>
+<% end %>
+
+<div>
+  <%= f.check_box :consent %>
+  <%= f.label :consent %>
+</div>
+
+<%= f.submit %>
