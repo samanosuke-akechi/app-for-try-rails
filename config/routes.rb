@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :tweets, only: [:index, :new, :create, :edit, :update]
 
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
   # Bootstrap JavaScript Bundle with Popper
   direct :bootstrap_javascript do
     'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'
