@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   resources :areas do
     # 単数形リソース(resource)なので通常は単数形で書くが、複数のfoodsを取り扱うため複数形で定義している
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
     collection do
       get 'google_map'
       post 'sort'
+      get 'send_sample_mail'
+      get 'send_now_sample_mail'
     end
   end
 
@@ -28,6 +32,8 @@ Rails.application.routes.draw do
   resources :tweets, only: [:index, :new, :create, :edit, :update]
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+  mount Sidekiq::Web => '/sidekiq'
 
   # Bootstrap JavaScript Bundle with Popper
   direct :bootstrap_javascript do
