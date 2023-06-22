@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     collection do
       get 'google_map'
       post 'sort'
+      get 'send_sample_mail'
+      get 'send_now_sample_mail'
     end
   end
 
