@@ -1,0 +1,5 @@
+<h1><%= @greet %></h1>
+
+<% @areas.pluck(:name).each do |area_name| %>
+  <div><%= area_name %></div>
+<% end %>
