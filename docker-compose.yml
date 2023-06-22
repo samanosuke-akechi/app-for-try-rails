@@ -24,6 +24,11 @@ services:
     stdin_open: true
     tty: true
     command: bundle exec rails server -b 0.0.0.0
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -q default -q mailers
+    volumes:
+      - .:/app-for-try-rails
   redis:
     image: redis:latest
     ports:
