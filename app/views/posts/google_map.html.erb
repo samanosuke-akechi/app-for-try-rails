@@ -1,6 +1,9 @@
 <!--The div element for the map -->
 <div id="map"></div>
 
+<% breadcrumb :google_map %>
+<%= render 'shared/breadcrumb' %>
+
 <!-- google api -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= google_map_api_key %>&callback=initMap"></script>
 <script>

@@ -33,6 +33,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'sidekiq', '<7'
 gem 'sidekiq-status'
 
+# breadcrumb
+gem 'gretel'
+
 group :production do
   gem 'unicorn'
 end

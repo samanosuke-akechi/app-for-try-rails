@@ -1,0 +1,22 @@
+<%# パンくずのテンプレートのカスタマイズ %>
+<%# デフォルトのテンプレートを使う場合はその場所に部分テンプレではなく`breadcrumbs`を記述する %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb mt-2 ms-4">
+    <% breadcrumbs.tap do |links| %>
+      <% next unless links.any? %>
+
+      <% links.each do |link| %>
+        <% if links.last == link %>
+          <li class="breadcrumb-item active" aria-current="page">
+            <%= link.text %>
+          </li>
+        <% else %>
+          <li class="breadcrumb-item">
+            <%= link_to link.text, link.url %>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ol>
+</nav>
