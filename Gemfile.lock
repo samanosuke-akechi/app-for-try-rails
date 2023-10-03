@@ -92,6 +92,8 @@ GEM
     date (3.3.3)
     diff-lcs (1.5.0)
     erubi (1.12.0)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -286,6 +288,8 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
@@ -341,6 +345,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.1.0)
   stimulus-rails
   turbolinks (~> 5)
+  typhoeus (~> 1.4)
   tzinfo-data
   unicorn
   web-console (>= 3.3.0)
