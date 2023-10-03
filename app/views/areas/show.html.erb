@@ -22,3 +22,6 @@
 
   <%= button_to "Destroy this area", @area, method: :delete %>
 </div>
+
+<% breadcrumb :area_show, @area %>
+<%= render 'shared/breadcrumb' %>

@@ -1,3 +1,5 @@
+require 'csv'
+
 class PostsController < ApplicationController
   def index
     @posts = Post.order(:sort_priority).limit(10)
@@ -20,5 +22,14 @@ class PostsController < ApplicationController
   def send_now_sample_mail
     SampleMailer.sample_notice('test@example.com').deliver_now
     redirect_to action: :index
+  end
+
+  def csv_export
+    posts = Post.order(:sort_priority)
+    csv_string = CSV.generate do |csv|
+      csv << %w[title text]
+      posts.each { |post| csv << [post.title, post.text] }
+    end
+    send_data(csv_string, filename: "posts_#{Time.current.strftime('%Y%m%d%H%M%S')}.csv")
   end
 end

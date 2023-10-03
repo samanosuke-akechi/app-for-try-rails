@@ -25,5 +25,8 @@
     width: 100px;
     right: -100px;
   }
+  .slick-prev:before, .slick-next:before {
+    color: black;
+  }
 }
 

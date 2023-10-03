@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post 'sort'
       get 'send_sample_mail'
       get 'send_now_sample_mail'
+      get 'csv_export'
     end
   end
 
