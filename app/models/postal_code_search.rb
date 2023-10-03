@@ -15,4 +15,15 @@ class PostalCodeSearch < ApplicationRecord
 
     result['results'].first
   end
+
+  # net/httpより処理速度が速い
+  def self.search_to_typhoeus(postal_code)
+    return {} if postal_code.blank?
+
+    req = Typhoeus::Request.new('http://zipcloud.ibsnet.co.jp/api/search', params: { zipcode: postal_code })
+    result = JSON.parse(req.run.response_body)
+    return {} if result['results'].blank?
+
+    result['results'].first
+  end
 end
