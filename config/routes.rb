@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get 'send_sample_mail'
       get 'send_now_sample_mail'
       get 'csv_export'
+      get :zip_export
     end
   end
 
