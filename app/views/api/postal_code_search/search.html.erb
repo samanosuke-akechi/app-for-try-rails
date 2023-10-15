@@ -4,16 +4,16 @@
   <% end %>
 
   <p>
-    郵便番号： <%= @zipcode %>
+    <%= "#{PostalCodeSearch.human_attribute_name(:zipcode)}：#{@zipcode}" %>
   </p>
   <p>
-    都道府県： <%= @address1 %>
+    <%= "#{PostalCodeSearch.human_attribute_name(:address1)}：#{@address1}" %>
   </p>
   <p>
-    市区町村： <%= @address2 %>
+    <%= "#{PostalCodeSearch.human_attribute_name(:address2)}：#{@address2}" %>
   </p>
   <p>
-    町域： <%= @address3 %>
+    <%= "#{PostalCodeSearch.human_attribute_name(:address3)}：#{@address3}" %>
   </p>
 </div>
 

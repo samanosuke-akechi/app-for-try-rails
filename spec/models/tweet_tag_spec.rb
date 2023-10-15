@@ -11,10 +11,10 @@ RSpec.describe TweetTag, type: :model do
     end
 
     context 'ツイートタグが登録できないとき' do
-      it 'nameが空だと登録できない' do
+      it 'タグ(name)が空だと登録できない' do
         tweet_tag.name = nil
         tweet_tag.valid?
-        expect(tweet_tag.errors.full_messages).to include("Name can't be blank")
+        expect(tweet_tag.errors.full_messages).to include('タグ を入力してください')
       end
     end
   end

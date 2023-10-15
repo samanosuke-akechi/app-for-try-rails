@@ -6,12 +6,18 @@
   <div id="tweets">
     <% @tweets.each do |tweet| %>
       <div class="m-2">
+        <div><%= Tweet.human_attribute_name(:title) %></div>
         <div><%= tweet.title %></div>
+        <div><%= Tweet.human_attribute_name(:text) %></div>
         <div class="textarea"><%= tweet.text %></div>
+        <% if tweet.tweet_tags.present? %>
+          <div><%= TweetTag.model_name.human %></div>
+        <% end %>
         <% tweet.tweet_tags.each do |tag| %>
           <div><%= "##{tag.name}" %></div>
         <% end %>
 
+        <div><%= TweetImage.model_name.human %></div>
         <div>
           <%= image_tag tweet.tweet_image.storage_file, class: 'tweet-image' if tweet.attached? %>
         </div>

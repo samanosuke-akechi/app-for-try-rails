@@ -11,10 +11,10 @@ RSpec.describe Area, type: :model do
     end
 
     context 'エリアが登録できないとき' do
-      it 'nameがないと登録できない' do
+      it '地域名(name)がないと登録できない' do
         area.name = ''
         area.valid?
-        expect(area.errors.full_messages).to include("Name can't be blank")
+        expect(area.errors.full_messages).to include('地域名 を入力してください')
       end
     end
   end

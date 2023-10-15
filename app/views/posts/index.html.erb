@@ -40,12 +40,14 @@
 
 <%= render partial: 'slider_posts' %>
 
+<h1><%= Post.model_name.human %></h1>
 <div id="sortable" style="width: 80vw; margin: 0 auto;" data-sort-url="<%= sort_posts_path %>">
   <% @posts.each do |post| %>
     <div class="d-flex align-items-center">
       <i class="bi bi-grid-3x2-gap me-3 sort-handle"></i>
       <div>
-        <p><%= post.title %></p>
+        <p><%= "#{Post.human_attribute_name(:title)}: #{post.title}" %></p>
+        <p><%= Post.human_attribute_name(:text) %></p>
         <p style="overflow-wrap: break-word;"><%= post.text %></p>
       </div>
     </div>

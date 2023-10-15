@@ -9,7 +9,7 @@
       <%= ff.text_field :price %>
     </div>
     <div>
-      <%= ff.label 'タグ', style: 'display: block;' %>
+      <%= ff.label :tag_ids, style: 'display: block;' %>
       <%= ff.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
     </div>
 
