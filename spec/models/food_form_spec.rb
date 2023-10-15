@@ -18,25 +18,25 @@ RSpec.describe FoodForm, type: :model do
         expect(food_form.save).to eq true
       end
 
-      it 'foodに紐づくtagsがなくても登録できる' do
+      it '食品(food)に紐づくtagsがなくても登録できる' do
         food_form.foods.first.tags = []
         expect(food_form.save).to eq true
       end
     end
 
     context 'FoodFormが登録できないとき' do
-      it 'consentがfalseだと登録できない' do
+      it '規約(consent)がfalseだと登録できない' do
         food_form.consent = false
         food_form.valid?
-        expect(food_form.errors.full_messages).to include('Consent must be accepted')
+        expect(food_form.errors.full_messages).to include('規約 を受諾してください')
       end
 
-      it 'foodsのうち一つのnameが空だと登録できない' do
+      it '食品(foods)のうち一つのnameが空だと登録できない' do
         food_form.foods.first.name = ''
         expect(food_form.save).to eq false
       end
 
-      it 'foodsのうち一つのpriceが空だと登録できない' do
+      it '食品(foods)のうち一つのpriceが空だと登録できない' do
         food_form.foods.first.price = nil
         expect(food_form.save).to eq false
       end
