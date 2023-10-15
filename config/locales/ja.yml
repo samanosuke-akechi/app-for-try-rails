@@ -1,0 +1,44 @@
+ja:
+  activerecord:
+    attributes: 
+      area:
+        name: 地域名
+      comic:
+        author: 著者
+        id: ID
+        title: タイトル
+      food:
+        name: 食品名
+        price: 価格
+        tag_ids: タグ
+      genre:
+        name: ジャンル
+      post:
+        text: 本文
+        title: タイトル
+      postal_code_search:
+        address1: 都道府県
+        address2: 市区町村
+        address3: 町域
+        zipcode: 郵便番号
+      tag:
+        name: タグ名
+      tweet:
+        accept: 規約に同意する
+        text: 本文
+        title: タイトル
+      tweet_image:
+        storage_file: ファイル
+      tweet_tag:
+        name: タグ
+    models:
+      area: 地域
+      comic: 漫画
+      food: 食品
+      genre: ジャンル
+      post: 投稿
+      postal_code_search: 郵便番号検索
+      tag: タグ
+      tweet: ツイート
+      tweet_image: ツイート画像
+      tweet_tag: タグ
