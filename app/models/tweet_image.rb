@@ -11,6 +11,6 @@ class TweetImage < ApplicationRecord
   def storage_file_attached?
     return true if storage_file.attached?
 
-    errors.add(:storage_file, 'must exist')
+    errors.add(:storage_file, 'を選択してください')
   end
 end
