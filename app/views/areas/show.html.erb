@@ -3,13 +3,19 @@
 <%= render @area %>
 
 <div>
-  <h3>食品</h3>
+  <h3><%= Food.model_name.human %></h3>
   <% @area.foods.each do |food| %>
     <div>
-      <%= food.name %>
+      <%= "#{Food.human_attribute_name(:name)}：#{food.name}" %>
     </div>
     <div>
-      <%= "#{food.price.to_formatted_s(:delimited)}円" %>
+      <%= "#{Food.human_attribute_name(:price)}：#{food.price.to_formatted_s(:delimited)}円" %>
+    </div>
+    <div>
+      <%= "#{Tag.human_attribute_name(:name)}" %>
+    </div>
+    <div>
+      <%= food.tags.pluck(:name).map { |tag_name| "##{tag_name}" }.join('、') %>
     </div>
   <% end %>
 </div>
