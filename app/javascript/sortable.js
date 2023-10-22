@@ -7,6 +7,7 @@ window.onload = function() {
   }
 
   const sortable = Sortable.create(el, {
+    animation: 150,
     handle: '.sort-handle',
     onUpdate: function(e) {
       const url = el.dataset.sortUrl;
