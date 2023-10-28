@@ -11,16 +11,16 @@ RSpec.describe TweetImage, type: :model do
     end
 
     context 'ツイート画像が登録できないとき' do
-      it 'ツイートに紐づかないと登録できない' do
+      it 'ツイート(tweet)に紐づかないと登録できない' do
         tweet_image.tweet = nil
         tweet_image.valid?
-        expect(tweet_image.errors.full_messages).to include('Tweet must exist')
+        expect(tweet_image.errors.full_messages).to include('ツイート を入力してください')
       end
 
-      it 'storage_fileがないと登録できない' do
+      it 'ファイル(storage_file)がないと登録できない' do
         tweet_image.storage_file = nil
         tweet_image.valid?
-        expect(tweet_image.errors.full_messages).to include('Storage file must exist')
+        expect(tweet_image.errors.full_messages).to include('ファイル を選択してください')
       end
     end
   end

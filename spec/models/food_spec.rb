@@ -14,19 +14,19 @@ RSpec.describe Food, type: :model do
       it 'areaがないと登録できない' do
         food.area = nil
         food.valid?
-        expect(food.errors.full_messages).to include('Area must exist')
+        expect(food.errors.full_messages).to include('地域 を入力してください')
       end
 
-      it 'nameがないと登録できない' do
+      it '食品名(name)がないと登録できない' do
         food.name = ''
         food.valid?
-        expect(food.errors.full_messages).to include("Name can't be blank")
+        expect(food.errors.full_messages).to include('食品名 を入力してください')
       end
 
-      it 'priceがないと登録できない' do
+      it '価格(price)がないと登録できない' do
         food.price = nil
         food.valid?
-        expect(food.errors.full_messages).to include("Price can't be blank")
+        expect(food.errors.full_messages).to include('価格 を入力してください')
       end
     end
   end

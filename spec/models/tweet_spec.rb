@@ -11,16 +11,16 @@ RSpec.describe Tweet, type: :model do
     end
 
     context 'ツイートが登録できないとき' do
-      it 'titleが空だと登録できない' do
+      it 'タイトル(title)が空だと登録できない' do
         tweet.title = ''
         tweet.valid?
-        expect(tweet.errors.full_messages).to include("Title can't be blank")
+        expect(tweet.errors.full_messages).to include('タイトル を入力してください')
       end
 
-      it 'textが空だと登録できない' do
+      it '本文(text)が空だと登録できない' do
         tweet.text = ''
         tweet.valid?
-        expect(tweet.errors.full_messages).to include("Text can't be blank")
+        expect(tweet.errors.full_messages).to include('本文 を入力してください')
       end
     end
   end

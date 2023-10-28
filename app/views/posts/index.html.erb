@@ -31,18 +31,23 @@
 <div>
   <%= link_to 'csvダウンロード', csv_export_posts_path(format: :csv) %>
 </div>
+<div>
+  <%= link_to 'zipダウンロード', zip_export_posts_path(format: :zip) %>
+</div>
 
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
 
 <%= render partial: 'slider_posts' %>
 
+<h1><%= Post.model_name.human %></h1>
 <div id="sortable" style="width: 80vw; margin: 0 auto;" data-sort-url="<%= sort_posts_path %>">
   <% @posts.each do |post| %>
     <div class="d-flex align-items-center">
       <i class="bi bi-grid-3x2-gap me-3 sort-handle"></i>
       <div>
-        <p><%= post.title %></p>
+        <p><%= "#{Post.human_attribute_name(:title)}: #{post.title}" %></p>
+        <p><%= Post.human_attribute_name(:text) %></p>
         <p style="overflow-wrap: break-word;"><%= post.text %></p>
       </div>
     </div>
