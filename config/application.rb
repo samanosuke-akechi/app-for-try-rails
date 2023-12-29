@@ -20,5 +20,7 @@ module AppForTryRails
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.time_zone = 'Tokyo' # アプリケーションのデフォルトタイムゾーン設定
   end
 end
