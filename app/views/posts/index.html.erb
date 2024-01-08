@@ -49,6 +49,7 @@
         <p><%= "#{Post.human_attribute_name(:title)}: #{post.title}" %></p>
         <p><%= Post.human_attribute_name(:text) %></p>
         <p style="overflow-wrap: break-word;"><%= post.text %></p>
+        <p><%= "#{Post.human_attribute_name(:created_at)}: #{l(post.created_at)}" %></p>
       </div>
     </div>
   <% end %>
