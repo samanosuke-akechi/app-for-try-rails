@@ -1,14 +1,15 @@
 <% content_for :css do %>
+  <%= bootstrap_css_link %>
+  <%= bootstrap_icons_css_link %>
   <%= stylesheet_link_tag slick_css_url %>
   <%= stylesheet_link_tag slick_theme_css_url %>
-  <%= stylesheet_link_tag bootstrap_icons_css_url %>
 <% end %>
 <% content_for :javascript do %>
-  <%= javascript_include_tag bootstrap_javascript_url %>
+  <%= bootstrap_javascript_tag %>
 <% end %>
 
 <div>
-  <%= link_to "郵便番号API利用", api_postal_code_search_search_path %>
+  <%= link_to "郵便番号API利用", api_postal_code_search_search_path, class: 'link-success' %>
 </div>
 <div>
   <%= link_to '漫画一覧ページ', comics_path %>
@@ -49,6 +50,7 @@
         <p><%= "#{Post.human_attribute_name(:title)}: #{post.title}" %></p>
         <p><%= Post.human_attribute_name(:text) %></p>
         <p style="overflow-wrap: break-word;"><%= post.text %></p>
+        <p><%= "#{Post.human_attribute_name(:created_at)}: #{l(post.created_at)}" %></p>
       </div>
     </div>
   <% end %>

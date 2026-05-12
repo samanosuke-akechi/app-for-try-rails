@@ -17,6 +17,7 @@ ja:
       post:
         text: 本文
         title: タイトル
+        created_at: 作成日時
       postal_code_search:
         address1: 都道府県
         address2: 市区町村
@@ -62,3 +63,53 @@ ja:
         required: を入力してください
     models:
       food_form: 食品フォーム
+  date:
+    abbr_day_names: # "%a"に対応する曜日の省略名
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+    abbr_month_names: # "%b"に対応する月の省略名
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    day_names: # "%A"に対応する曜日の名称
+      - 日曜日
+      - 月曜日
+      - 火曜日
+      - 水曜日
+      - 木曜日
+      - 金曜日
+      - 土曜日
+    month_names: # "%B"に対応する月の名称
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+  time:
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z" # example: "2023年12月29日(金) 21時07分21秒 +0900"
+      simple: "%Y/%m/%d %H:%M:%S" # example: "2023/12/29 21:07:21"
+      yyyymmddhhmmss: "%Y%m%d%H%M%S" # example: "20231229210721"
