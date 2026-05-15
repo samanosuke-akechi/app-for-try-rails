@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :users
   resources :areas do
     # 単数形リソース(resource)なので通常は単数形で書くが、複数のfoodsを取り扱うため複数形で定義している
     resource :foods, only: [:new, :create, :edit, :update], module: :areas, controller: :foods

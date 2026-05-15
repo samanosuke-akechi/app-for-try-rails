@@ -25,3 +25,7 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   Max: 15
+
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
