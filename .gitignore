@@ -34,3 +34,6 @@ yarn-debug.log*
 /.env
 
 dump.rdb
+
+# Ignore coverage reports.
+/coverage/
